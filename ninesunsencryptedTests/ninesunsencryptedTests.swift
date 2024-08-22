@@ -2,16 +2,23 @@
 //  ninesunsencryptedTests.swift
 //  ninesunsencryptedTests
 //
-//  Created by Luan Tran on 21/8/24.
 //
 
 import Testing
 @testable import ninesunsencrypted
 
 struct ninesunsencryptedTests {
-
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+  
+  @Test func testDecryptAsymmetric() async throws {
+    let testData = getTestData()
+    for data in testData {
+      let result = try? NineSunsSDK.stringDecryptAsymmetric(
+        myPrivateKey: data.privateKey,
+        theirPublicKey: data.publicKey,
+        encryptedText: data.encryptedData
+      )
+      #expect(result == data.rawData)
     }
+  }
 
 }
