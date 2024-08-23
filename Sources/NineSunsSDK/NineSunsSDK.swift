@@ -1,10 +1,8 @@
-//
-//  NineSunsSDK.swift
-//  ninesunsencrypted
-//
-//
+// The Swift Programming Language
+// https://docs.swift.org/swift-book
+
 import Foundation
-internal import TweetNacl
+import TweetNacl
 
 public struct NineSunsSDK {
   
@@ -60,4 +58,3 @@ public struct NineSunsSDK {
   }
   
 }
-
