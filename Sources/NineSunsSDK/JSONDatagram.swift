@@ -11,7 +11,7 @@ public class JSONDatagram {
   var version: String
   var versionConstraint: String
   
-  init(type: String, version: String = "0.0.1", versionConstraint: String = "0.0.*") {
+  public init(type: String, version: String = "0.0.1", versionConstraint: String = "0.0.*") {
     self.type = type
     self.version = version
     self.versionConstraint = versionConstraint
