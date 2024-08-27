@@ -4,7 +4,7 @@
 import Foundation
 import TweetNacl
 
-public struct NineSunsSDK {
+public struct NSDecryption {
   
   private static let nonceLength = 24
   
@@ -14,8 +14,8 @@ public struct NineSunsSDK {
     }
     
     // Extract the nonce and message
-    let nonce = messageWithNonceData.subdata(in: 0..<NineSunsSDK.nonceLength)
-    let message = messageWithNonceData.subdata(in: NineSunsSDK.nonceLength..<messageWithNonceData.count)
+    let nonce = messageWithNonceData.subdata(in: 0..<NSDecryption.nonceLength)
+    let message = messageWithNonceData.subdata(in: NSDecryption.nonceLength..<messageWithNonceData.count)
     
     // Decrypt the message
     let decrypted: Data
@@ -55,6 +55,25 @@ public struct NineSunsSDK {
     let decrypted = try decryptAsymmetric(secretOrSharedKey: sharedKey, messageWithNonce: encryptedText)
     
     return decrypted
+  }
+  
+  /**
+   * Symmetric decryption method for string.
+   * - Parameters:
+   *   - message: Data to decrypt in String.
+   *   - symmetricKey: symmetric key.
+   *   - datagram: Datagram to decrypt.
+   * - Returns: Decrypted plaintext.
+   */
+  public static func decryptSymmetric(message: String, symmetricKey: String, datagram: JSONDatagram) throws -> String? {
+    guard let keyData = decodeBase64Message(symmetricKey) else {
+      throw NSError(domain: "SymmetricEncryption", code: 4, userInfo: [NSLocalizedDescriptionKey: "Couldn't get data of symmetric key: \(symmetricKey)"])
+    }
+    guard let messageData = decodeBase64Message(message) else {
+      throw NSError(domain: "SymmetricEncryption", code: 4, userInfo: [NSLocalizedDescriptionKey: "Couldn't get data of message: \(message)"])
+    }
+    let box = TaggedSecretBox(keyBytes: keyData)
+    return try box.decrypt(datagram: datagram, bytes: messageData)
   }
   
 }

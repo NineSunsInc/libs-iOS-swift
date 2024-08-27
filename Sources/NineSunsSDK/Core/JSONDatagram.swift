@@ -31,13 +31,15 @@ public class JSONDatagram {
   func deserialize(data: Data) -> String? {
     do {
       guard
-        let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-        let dataObject = jsonObject["data"] as? [String: Any]
-      else {
+        let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
         return nil
       }
-      let data = try JSONSerialization.data(withJSONObject: dataObject, options: .prettyPrinted)
-      return String(data: data, encoding: .utf8)
+      if let dataObject = jsonObject["data"] as? [String: Any] {
+        let data = try JSONSerialization.data(withJSONObject: dataObject, options: .prettyPrinted)
+        return String(data: data, encoding: .utf8)
+      } else if let stringObject = jsonObject["data"] as? String {
+        return stringObject
+      }
     } catch {
       print("Error deserializing JSON: \(error)")
     }

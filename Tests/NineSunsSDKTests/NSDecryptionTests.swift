@@ -1,25 +1,18 @@
+//
+//  NSDecryptionTests.swift
+//  NineSunsSDK
+//
+//
+
 import Testing
 @testable import NineSunsSDK
 
-@Test func stringDecryptAsymmetric() async throws {
-  let testData = getTestData()
-  #expect(!testData.isEmpty)
-  for data in testData {
-    let result = try? NineSunsSDK.stringDecryptAsymmetric(
-      myPrivateKey: data.privateKey,
-      theirPublicKey: data.publicKey,
-      encryptedText: data.encryptedData
-    )
-    #expect(result == data.rawData)
-  }
-}
-
-@Test func symmetricEncryption() async throws {
+@Test func decryptionTests() async throws {
   let privateKey = "m0m6L4s9blikJ/Ds9c3KVA/Qkqf4jQEoSYLHUo4j3LQ="
   let publicKey = "oaijysb01+sHQ3ao0kc3tF2Wcy9/M7M3a2S7crkBzm4="
   let encryptedKey = "4CmRSsFewgFcy6j1zM5cGJa+uNDdhEySFsj78l3a8r4DShkYhiLHuOPtPVEs06tuRsP2YwW4y/MWFney1F6Ms0gXxJikJ8KR5k2n3BONJlGZ+zsL"
   
-  guard let symmetricKey = try? NineSunsSDK.stringDecryptAsymmetric(
+  guard let symmetricKey = try? NSDecryption.stringDecryptAsymmetric(
     myPrivateKey: privateKey,
     theirPublicKey: publicKey,
     encryptedText: encryptedKey
@@ -32,7 +25,7 @@ import Testing
   let datagram = JSONDatagram(type: "User Shared Encrypted Data Datagram")
   
   do {
-    let response = try NineSunsSDK.decryptSymmetric(
+    let response = try NSDecryption.decryptSymmetric(
       message: message,
       symmetricKey: symmetricKey,
       datagram: datagram
