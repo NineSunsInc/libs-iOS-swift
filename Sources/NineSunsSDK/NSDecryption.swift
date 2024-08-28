@@ -66,6 +66,9 @@ public struct NSDecryption {
    * - Returns: Decrypted plaintext.
    */
   public static func decryptSymmetric(message: String, symmetricKey: String, datagram: JSONDatagram) throws -> String? {
+    if message.isEmpty {
+      throw NSError(domain: "SymmetricEncryption", code: 4, userInfo: [NSLocalizedDescriptionKey: "Couldn't decrypt empty message"])
+    }
     guard let keyData = decodeBase64Message(symmetricKey) else {
       throw NSError(domain: "SymmetricEncryption", code: 4, userInfo: [NSLocalizedDescriptionKey: "Couldn't get data of symmetric key: \(symmetricKey)"])
     }

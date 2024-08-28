@@ -17,7 +17,7 @@ public class JSONDatagram {
     self.versionConstraint = versionConstraint
   }
   
-  func serialize(data: [String: Any]) -> Data? {
+  func serialize(data: String) -> Data? {
     var jsonData: Data?
     let dict: [String: Any] = ["version": self.version, "type": self.type, "data": data]
     do {

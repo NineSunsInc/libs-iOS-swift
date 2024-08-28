@@ -6,8 +6,6 @@
 
 import Foundation
 
-let METADATA_VERSION = "0.1.0"
-
 class AADMeta {
   var version: String
   var type: String
