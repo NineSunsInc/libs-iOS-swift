@@ -41,10 +41,10 @@ public struct NSDecryption {
    *   - encryptedText: Data to decrypt.
    * - Returns: Decrypted plaintext.
    */
-  public static func stringDecryptAsymmetric(myPrivateKey: String, theirPublicKey: String, encryptedText: String) throws -> String {
+  public static func stringDecryptAsymmetric(privateKey: String, publicKey: String, encryptedText: String) throws -> String {
     // Convert keys from base64 to Data
-    guard let myPrivateKeyData = Data(base64Encoded: myPrivateKey),
-          let theirPublicKeyData = Data(base64Encoded: theirPublicKey) else {
+    guard let myPrivateKeyData = Data(base64Encoded: privateKey),
+          let theirPublicKeyData = Data(base64Encoded: publicKey) else {
       throw NSError(domain: "Invalid base64 string for keys", code: -1, userInfo: nil)
     }
     

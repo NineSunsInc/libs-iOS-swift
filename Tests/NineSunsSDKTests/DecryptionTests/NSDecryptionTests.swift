@@ -13,8 +13,8 @@ import Testing
   let encryptedKey = "4CmRSsFewgFcy6j1zM5cGJa+uNDdhEySFsj78l3a8r4DShkYhiLHuOPtPVEs06tuRsP2YwW4y/MWFney1F6Ms0gXxJikJ8KR5k2n3BONJlGZ+zsL"
   
   guard let symmetricKey = try? NSDecryption.stringDecryptAsymmetric(
-    myPrivateKey: privateKey,
-    theirPublicKey: publicKey,
+    privateKey: privateKey,
+    publicKey: publicKey,
     encryptedText: encryptedKey
   ) else {
     #expect(Bool(false), "Symmetric Key is Null")
