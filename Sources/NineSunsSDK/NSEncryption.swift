@@ -38,20 +38,20 @@ public struct NSEncryption {
   /**
    * Asymmetric encryption method for string.
    * - Parameters:
-   *   - myPrivateKey: User's private encryption key.
-   *   - theirPublicKey: Recipient's public key.
+   *   - privateKey: User's private encryption key.
+   *   - publicKey: Recipient's public key.
    *   - encryptedText: Data to encrypt.
    * - Returns: Encrypted plaintext.
    */
   public static func stringEncryptAsymmetric(privateKey: String, publicKey: String, message: String) -> String? {
     do {
-      guard let myPrivateKeyData = Data(base64Encoded: privateKey),
-            let theirPublicKeyData = Data(base64Encoded: publicKey) else {
+      guard let privateKeyData = Data(base64Encoded: privateKey),
+            let publicKeyData = Data(base64Encoded: publicKey) else {
         throw NSError(domain: "Invalid base64 string for keys", code: -1, userInfo: nil)
       }
       
       // Generate the shared key using the before method
-      let sharedKey = try NaclBox.before(publicKey: theirPublicKeyData, secretKey: myPrivateKeyData)
+      let sharedKey = try NaclBox.before(publicKey: publicKeyData, secretKey: privateKeyData)
       
       // Encrypt the message
       return encryptAsymmetric(secretOrSharedKey: sharedKey, message: message)

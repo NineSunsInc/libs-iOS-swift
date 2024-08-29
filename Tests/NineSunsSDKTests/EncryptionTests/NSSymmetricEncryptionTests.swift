@@ -43,10 +43,16 @@ import Testing
   let symmetricKey = "vBdLik0fmFIP9uSfRQgPk3yBQCTalmP4nwBwqaU/Pm0="
   let jsonDatagram = JSONDatagram(type: "User Shared Encrypted Data Datagram")
   
-  print("SymmetricKey: \(symmetricKey)")
+  print("----- STARTING TESTING SYMMETRIC ENCRYPTION -----")
+  print("Symmetric Key: \(symmetricKey)")
+  print("-----")
   
+  var index = 0
   for message in messages {
-    print("==================")
+    defer {
+      index += 1
+    }
+    print("----- CASE \(index):")
     print("Starting encrypted message: \(message)")
     guard let encrypted = try? NSEncryption.encryptSymmetric(message: message, symmetricKey: symmetricKey, datagram: jsonDatagram) else {
       print("Encrypt fail")

@@ -36,20 +36,20 @@ public struct NSDecryption {
   /**
    * Asymmetric decryption method for string.
    * - Parameters:
-   *   - myPrivateKey: User's private encryption key.
-   *   - theirPublicKey: Recipient's public key.
+   *   - privateKey: User's private encryption key.
+   *   - publicKey: Recipient's public key.
    *   - encryptedText: Data to decrypt.
    * - Returns: Decrypted plaintext.
    */
   public static func stringDecryptAsymmetric(privateKey: String, publicKey: String, encryptedText: String) throws -> String {
     // Convert keys from base64 to Data
-    guard let myPrivateKeyData = Data(base64Encoded: privateKey),
-          let theirPublicKeyData = Data(base64Encoded: publicKey) else {
+    guard let privateKeyData = Data(base64Encoded: privateKey),
+          let publicKeyData = Data(base64Encoded: publicKey) else {
       throw NSError(domain: "Invalid base64 string for keys", code: -1, userInfo: nil)
     }
     
     // Generate the shared key using the before method
-    let sharedKey = try NaclBox.before(publicKey: theirPublicKeyData, secretKey: myPrivateKeyData)
+    let sharedKey = try NaclBox.before(publicKey: publicKeyData, secretKey: privateKeyData)
     
     // Decrypt the encrypted text
     let decrypted = try decryptAsymmetric(secretOrSharedKey: sharedKey, messageWithNonce: encryptedText)
