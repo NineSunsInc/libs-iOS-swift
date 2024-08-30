@@ -9,6 +9,13 @@ import TweetNacl
 
 public struct NSEncryption {
   
+  /**
+   * Asymmetric encryption method for string.
+   * - Parameters:
+   *   - secretOrSharedKey: Data of a shared secret key between your private key and the recipient's public key
+   *   - message: Plaint text to encrypt.
+   * - Returns: Encrypted plaintext.
+   */
   private static func encryptAsymmetric(secretOrSharedKey: Data, message: String) -> String? {
     // Convert message to Data
     guard let messageData = message.data(using: .utf8) else {
