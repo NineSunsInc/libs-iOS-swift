@@ -142,3 +142,31 @@ private func _readOne(_ stream: InputStream) -> Int {
   }
   return Int(buffer[0])
 }
+
+func hexStringOf(_ data: Data) -> String {
+  let hexString = data.map { String(format: "%02x", $0) }.joined()
+  return hexString
+}
+
+func dataFromHexString(_ hexString: String) -> Data? {
+  var data = Data()
+  var hex = hexString
+  
+  // Ensure the string has an even number of characters
+  if hex.count % 2 != 0 {
+    hex = "0" + hex
+  }
+  
+  // Iterate over the string in pairs of two characters
+  for i in stride(from: 0, to: hex.count, by: 2) {
+    let startIndex = hex.index(hex.startIndex, offsetBy: i)
+    let endIndex = hex.index(startIndex, offsetBy: 2)
+    let byteString = hex[startIndex..<endIndex]
+    if let num = UInt8(byteString, radix: 16) {
+      data.append(num)
+    } else {
+      return nil // Return nil if the string contains invalid hex characters
+    }
+  }
+  return data
+}

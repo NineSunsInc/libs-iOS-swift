@@ -6,8 +6,8 @@ import Testing
   #expect(!testData.isEmpty)
   for data in testData {
     let result = try? NSDecryption.stringDecryptAsymmetric(
-      myPrivateKey: data.privateKey,
-      theirPublicKey: data.publicKey,
+      privateKey: data.privateKey,
+      publicKey: data.publicKey,
       encryptedText: data.encryptedData
     )
     #expect(result == data.rawData)
