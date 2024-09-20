@@ -13,6 +13,9 @@ let package = Package(
     .library(
       name: "NineSunsSDK",
       targets: ["NineSunsSDK"]),
+    .library(
+      name: "NSCatCrypto",
+      targets: ["NSCatCrypto"]),
   ],
   dependencies: [
     .package(url: "https://github.com/bitmark-inc/tweetnacl-swiftwrap.git", from: "1.0.0")
@@ -26,9 +29,25 @@ let package = Package(
         .product(name: "TweetNacl", package: "tweetnacl-swiftwrap")
       ]
     ),
+    .target(name: "Argon2",
+            path: "Sources/NSCatCryptoObjectC/ModuleMaps/Argon2",
+            publicHeadersPath: "ObjcHeader"),
+    .target(name: "MD6",
+            path: "Sources/NSCatCryptoObjectC/ModuleMaps/MD6",
+            publicHeadersPath: "ObjcHeader"),
+    .target(
+      name: "SHA3",
+      path: "Sources/NSCatCryptoObjectC/ModuleMaps/SHA3",
+      publicHeadersPath: "ObjcHeader"),
+    .target(
+      name: "NSCatCrypto",
+      dependencies: [.target(name: "Argon2"), .target(name: "MD6"), .target(name: "SHA3")],
+      path: "Sources/NSCatCrypto"
+    ),
     .testTarget(
       name: "NineSunsSDKTests",
-      dependencies: ["NineSunsSDK"]
+      dependencies: ["NineSunsSDK", "NSCatCrypto"]
     ),
-  ]
+  ],
+  swiftLanguageVersions: [.v5]
 )
