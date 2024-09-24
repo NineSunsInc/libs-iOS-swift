@@ -143,11 +143,6 @@ private func _readOne(_ stream: InputStream) -> Int {
   return Int(buffer[0])
 }
 
-func hexStringOf(_ data: Data) -> String {
-  let hexString = data.map { String(format: "%02x", $0) }.joined()
-  return hexString
-}
-
 func dataFromHexString(_ hexString: String) -> Data? {
   var data = Data()
   var hex = hexString
