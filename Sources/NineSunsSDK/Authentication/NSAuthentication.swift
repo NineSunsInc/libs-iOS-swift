@@ -43,8 +43,12 @@ public struct NSAuthentication {
     }
     let accountInfo = NSAccountInfo(
       auth: accountAuth,
-      encryptedClientData: resultProof.data.encryptedClientData,
-      passwordDerivedSecret: passwordDerivedSecret
+      passwordDerivedSecret: passwordDerivedSecret,
+      userDataEncrypted: resultProof.data.userDataEncrypted,
+      userPrivateDataEncrypted: resultProof.data.userPrivateDataEncrypted,
+      userNonEncrypted: resultProof.data.userNonEncrypted,
+      userPrivateDocumentData: resultProof.data.userPrivateDocumentData,
+      encryptedClientData: resultProof.data.encryptedClientData
     )
     return accountInfo
   }
