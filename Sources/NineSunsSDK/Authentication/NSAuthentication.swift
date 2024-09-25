@@ -8,7 +8,15 @@ import Foundation
 
 public struct NSAuthentication {
   
-  static func signIn(userName: String, password: String) async throws -> NSAccountInfo {
+  /**
+   * Sign in to the NineSuns system using a user account.
+   * @param {string} userName - The user's username.
+   * @param {string} password - The user's password.
+   * @returns {{accountInfo: NSAccountInfo, pds: string}} -
+   * accountInfo: The user's account information.
+   * pds: Password Derived Secret (PDS) - This is a secret key used for encryption and decryption. It should not be exposed to the internet.
+   */
+  static func signIn(userName: String, password: String) async throws -> (accountInfo: NSAccountInfo, pds: String) {
     let (privateKeyStr, publicKeyStr) = SRPClient.generateEphemeral()
     let result = try await NSClient.signInRetrieve(username: userName, clientEphemeralPublic: publicKeyStr)
     guard let result = result else {
@@ -43,13 +51,12 @@ public struct NSAuthentication {
     }
     let accountInfo = NSAccountInfo(
       auth: accountAuth,
-      passwordDerivedSecret: passwordDerivedSecret,
       userDataEncrypted: resultProof.data.userDataEncrypted,
       userPrivateDataEncrypted: resultProof.data.userPrivateDataEncrypted,
       userNonEncrypted: resultProof.data.userNonEncrypted,
       userPrivateDocumentData: resultProof.data.userPrivateDocumentData,
       encryptedClientData: resultProof.data.encryptedClientData
     )
-    return accountInfo
+    return (accountInfo: accountInfo, pds: passwordDerivedSecret)
   }
 }
