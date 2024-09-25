@@ -16,7 +16,7 @@ public struct NSAuthentication {
    * accountInfo: The user's account information.
    * pds: Password Derived Secret (PDS) - This is a secret key used for encryption and decryption. It should not be exposed to the internet.
    */
-  static func signIn(userName: String, password: String) async throws -> (accountInfo: NSAccountInfo, pds: String) {
+  public static func signIn(userName: String, password: String) async throws -> (accountInfo: NSAccountInfo, pds: String) {
     let (privateKeyStr, publicKeyStr) = SRPClient.generateEphemeral()
     let result = try await NSClient.signInRetrieve(username: userName, clientEphemeralPublic: publicKeyStr)
     guard let result = result else {
