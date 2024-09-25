@@ -5,10 +5,10 @@
 //
 
 public struct NSAccountInfo: Codable {
-  var auth: NSAccountAuth
-  let userDataEncrypted: NSUserDataEncrypted?
-  let userPrivateDataEncrypted: NSUserPrivateDataEncrypted?
-  let userNonEncrypted: NSUserNonEncrypted?
-  let userPrivateDocumentData: NSUserPrivateDocumentData?
-  let encryptedClientData: String?
+  public var auth: NSAccountAuth
+  public let userDataEncrypted: NSUserDataEncrypted?
+  public let userPrivateDataEncrypted: NSUserPrivateDataEncrypted?
+  public let userNonEncrypted: NSUserNonEncrypted?
+  public let userPrivateDocumentData: NSUserPrivateDocumentData?
+  public let encryptedClientData: String?
 }

@@ -5,6 +5,6 @@
 //
 
 public struct NSPublicKey: Codable {
-  let key: String
-  let signature: String
+  public let key: String
+  public let signature: String
 }

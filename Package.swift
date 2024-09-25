@@ -46,9 +46,7 @@ let package = Package(
         .product(name: "TweetNacl", package: "tweetnacl-swiftwrap"),
         .product(name: "BigInt", package: "BigInt"),
         .product(name: "Cryptor", package: "BlueCryptor"),
-        .target(name: "Argon2"),
-        .target(name: "MD6"),
-        .target(name: "SHA3"),
+        .target(name: "NSCatCrypto"),
       ]
     ),
     .testTarget(

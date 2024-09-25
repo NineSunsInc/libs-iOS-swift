@@ -5,12 +5,12 @@
 //
 
 public struct NSUserPreference: Codable {
-  let id: String
-  let userId: String
-  let dateFormat: String
-  let language: String
-  let timezone: String?
-  let theme: String
+  public let id: String
+  public let userId: String
+  public let dateFormat: String
+  public let language: String
+  public let timezone: String?
+  public let theme: String
   
   enum CodingKeys: String, CodingKey {
     case id

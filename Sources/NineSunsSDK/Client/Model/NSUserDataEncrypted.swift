@@ -4,15 +4,15 @@
 //
 //
 
-struct NSUserDataEncrypted: Codable {
-  let firstName: String?
-  let middleName: String?
-  let lastName: String?
-  let preferredFirstName: String?
-  let image: String?
-  let phoneNumber: String?
-  let email: String?
-  let encryptedClientData: String?
+public struct NSUserDataEncrypted: Codable {
+  public let firstName: String?
+  public let middleName: String?
+  public let lastName: String?
+  public let preferredFirstName: String?
+  public let image: String?
+  public let phoneNumber: String?
+  public let email: String?
+  public let encryptedClientData: String?
   
   enum CodingKeys: String, CodingKey {
     case firstName = "first_name"

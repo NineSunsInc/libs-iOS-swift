@@ -5,11 +5,11 @@
 //
 
 public struct NSAccountAuth: Codable {
-  var username: String
-  var roles: [String]
-  var accessToken: String
-  var refreshToken: String
-  var expiresIn: Double?
+  public var username: String
+  public var roles: [String]
+  public var accessToken: String
+  public var refreshToken: String
+  public var expiresIn: Double?
   
   enum CodingKeys: String, CodingKey {
     case username

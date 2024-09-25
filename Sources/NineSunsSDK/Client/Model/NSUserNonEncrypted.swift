@@ -5,11 +5,11 @@
 //
 
 public struct NSUserNonEncrypted: Codable {
-  let username: String?
-  let isDevelop: Bool?
-  let signingPublicKey: String?
-  let publicKey: NSPublicKey?
-  let userPreference: NSUserPreference?
+  public let username: String?
+  public let isDevelop: Bool?
+  public let signingPublicKey: String?
+  public let publicKey: NSPublicKey?
+  public let userPreference: NSUserPreference?
   
   enum CodingKeys: String, CodingKey {
     case username
