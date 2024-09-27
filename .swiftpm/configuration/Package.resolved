@@ -1,6 +1,24 @@
 {
-  "originHash" : "4c4d24775e13d90786f229c5db8207b49da95eddc830c3e763bb290b30f539f8",
+  "originHash" : "9f06ae5599f4f9774ec88f684aca0c691d794b70e4e3bc08aed2cbd6aebf8e83",
   "pins" : [
+    {
+      "identity" : "bigint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/attaswift/BigInt",
+      "state" : {
+        "revision" : "793a7fac0bfc318e85994bf6900652e827aef33e",
+        "version" : "5.4.1"
+      }
+    },
+    {
+      "identity" : "bluecryptor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/IBM-Swift/BlueCryptor.git",
+      "state" : {
+        "revision" : "cec97c24b111351e70e448972a7d3fe68a756d6d",
+        "version" : "2.0.2"
+      }
+    },
     {
       "identity" : "tweetnacl-swiftwrap",
       "kind" : "remoteSourceControl",
