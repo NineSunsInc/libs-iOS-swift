@@ -65,7 +65,7 @@ public struct NSAuthentication {
    * @param {string} refreshToken - The refresh token.
    * @returns The token response with access token and refresh token infor
    */
-  public static func newAccessToken(with refreshToken: String) async throws -> NSTokenResponse? {
+  public static func newAccessToken(with refreshToken: String) async throws -> NSAccountAuth? {
     try await NSClient.newAccessToken(with: refreshToken)
   }
 }

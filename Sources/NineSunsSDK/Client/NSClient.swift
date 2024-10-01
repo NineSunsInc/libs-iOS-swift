@@ -67,7 +67,7 @@ extension NSClient {
     return response
   }
   
-  static func newAccessToken(with refreshToken: String) async throws -> NSTokenResponse? {
+  static func newAccessToken(with refreshToken: String) async throws -> NSAccountAuth? {
     let parameters = [
       "grant_type": "refresh_token",
       "refresh_token": refreshToken
@@ -77,7 +77,7 @@ extension NSClient {
       method: .POST,
       bodyData: parameters
     )
-    let response = JSONHelper.decodeJSONData(NSTokenResponse.self, from: data)
+    let response = JSONHelper.decodeJSONData(NSAccountAuth.self, from: data)
     return response
   }
 }
