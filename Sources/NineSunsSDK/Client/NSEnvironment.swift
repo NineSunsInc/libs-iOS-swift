@@ -4,12 +4,12 @@
 //
 //
 
-enum NSEnvironment {
+public enum NSEnvironment {
   case dev
   case production
 }
 
-extension NSEnvironment {
+public extension NSEnvironment {
   var baseUrl: String {
     switch self {
     case .dev:
