@@ -66,4 +66,18 @@ extension NSClient {
     let response = JSONHelper.decodeJSONData(NSAccountAuth.self, from: data)
     return response
   }
+  
+  static func newAccessToken(with refreshToken: String) async throws -> NSAccountAuth? {
+    let parameters = [
+      "grant_type": "refresh_token",
+      "refresh_token": refreshToken
+    ]
+    let data = try await NSClient.request(
+      endPoint: "oauth/access-token",
+      method: .POST,
+      bodyData: parameters
+    )
+    let response = JSONHelper.decodeJSONData(NSAccountAuth.self, from: data)
+    return response
+  }
 }
