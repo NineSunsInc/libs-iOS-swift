@@ -13,6 +13,7 @@ public struct NSUserDataEncrypted: Codable {
   public let phoneNumber: String?
   public let email: String?
   public let encryptedClientData: String?
+  public let totpSecret: String?
   
   enum CodingKeys: String, CodingKey {
     case firstName = "first_name"
@@ -23,5 +24,6 @@ public struct NSUserDataEncrypted: Codable {
     case phoneNumber = "phone_number"
     case email
     case encryptedClientData = "encrypted_client_data"
+    case totpSecret = "totp_secret"
   }
 }
