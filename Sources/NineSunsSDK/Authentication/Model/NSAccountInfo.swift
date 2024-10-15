@@ -11,4 +11,5 @@ public struct NSAccountInfo: Codable {
   public let userNonEncrypted: NSUserNonEncrypted?
   public let userPrivateDocumentData: NSUserPrivateDocumentData?
   public let encryptedClientData: String?
+  public let authenticateToken: String?
 }

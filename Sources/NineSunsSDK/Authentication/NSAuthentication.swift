@@ -55,7 +55,8 @@ public struct NSAuthentication {
       userPrivateDataEncrypted: resultProof.data.userPrivateDataEncrypted,
       userNonEncrypted: resultProof.data.userNonEncrypted,
       userPrivateDocumentData: resultProof.data.userPrivateDocumentData,
-      encryptedClientData: resultProof.data.encryptedClientData
+      encryptedClientData: resultProof.data.encryptedClientData,
+      authenticateToken: resultProof.data.authenticateToken
     )
     return (accountInfo: accountInfo, pds: passwordDerivedSecret)
   }
